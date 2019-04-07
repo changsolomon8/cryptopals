@@ -29,8 +29,11 @@ char_freq_dict = {
     "z" : 0.000555
 }
 
+puncuation = ',?!@#$%^&*()\'\"|{}./'
+
 # Performs a chi squared test.  Smaller numbers are better.
 def chi_squared_test(s):
+    s = s.lower()
     # Build frequency dictionary.
     observed_freq = {}
     for c in s:
@@ -39,7 +42,12 @@ def chi_squared_test(s):
         observed_freq[c] += 1
     chi2 = 0.0
     for c in s:
-        expected_count = char_freq_dict[c] * len(s)
-        chi2 += (observed_freq[c] - expected_count) * (observed_freq[c] - expected_count) / expected_count
+        if c in puncuation:
+                continue
+        if c in char_freq_dict.keys():
+            expected_count = char_freq_dict[c] * len(s)
+            chi2 += (observed_freq[c] - expected_count) * (observed_freq[c] - expected_count) / expected_count
+        else:
+            chi2 += float('inf')
     return chi2
 
