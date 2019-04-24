@@ -1,3 +1,5 @@
+import string
+
 # https://www.codeproject.com/KB/security/Crack_Caesar_Cipher/1.jpg
 char_freq_dict = {
     " " : 0.184820,
@@ -29,7 +31,7 @@ char_freq_dict = {
     "z" : 0.000555
 }
 
-puncuation = ',?!@#$%^&*()\'\"|{}./'
+puncuation = ',?!@#$%^&*()\'\"|{}./+-='
 
 # Performs a chi squared test.  Smaller numbers are better.
 def chi_squared_test(s):
@@ -42,11 +44,11 @@ def chi_squared_test(s):
         observed_freq[c] += 1
     chi2 = 0.0
     for c in s:
-        if c in puncuation:
-                continue
         if c in char_freq_dict.keys():
             expected_count = char_freq_dict[c] * len(s)
             chi2 += (observed_freq[c] - expected_count) * (observed_freq[c] - expected_count) / expected_count
+        elif c in string.printable:
+            chi2 += len(s)
         else:
             chi2 += float('inf')
     return chi2

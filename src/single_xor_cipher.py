@@ -13,4 +13,4 @@ def solve_single_xor_cipher(s):
         if score < min_score:
             min_score = score
             best_result = raw_string
-    return best_result
+    return (best_result, min_score)
