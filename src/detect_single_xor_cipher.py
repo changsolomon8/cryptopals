@@ -7,7 +7,7 @@ def detect_single_xor_cipher(lines):
     best_result = b''
     for line in lines:
         line = line.strip('\n')
-        (result, score) = single_xor_cipher.solve_single_xor_cipher(line)
+        (result, score, best_key) = single_xor_cipher.solve_single_xor_cipher(bytearray.fromhex(line))
         if score < min_score:
             min_score = score
             best_result = result

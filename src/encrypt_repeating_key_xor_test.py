@@ -2,7 +2,7 @@
 import encrypt_repeating_key_xor
 import unittest
 
-class EncrypRepeatingKeyXOR(unittest.TestCase):
+class EncrypRepeatingKeyXORTest(unittest.TestCase):
     def test(self):
         self.assertEqual(
                 encrypt_repeating_key_xor.encrypt_repeating_key_xor(

@@ -4,7 +4,7 @@ import unittest
 
 class DetectSingleXORCipherTest(unittest.TestCase):
     def test(self):
-        f = open("../testdata/detect_single_xor_ciper_testdata.txt")
+        f = open('../testdata/detect_single_xor_ciper_testdata.txt')
         f_lines = f.readlines();
         f.close()
         result = detect_single_xor_cipher.detect_single_xor_cipher(f_lines)

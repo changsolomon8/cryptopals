@@ -1,9 +1,9 @@
 import english_scoring
 
-def solve_single_xor_cipher(s):
-    raw_bytes = bytearray.fromhex(s)
+def solve_single_xor_cipher(raw_bytes):
     min_score = float('inf')
     best_result = b''
+    best_key = -1
 
     for key in range(256):
         raw_string = ''
@@ -13,4 +13,5 @@ def solve_single_xor_cipher(s):
         if score < min_score:
             min_score = score
             best_result = raw_string
-    return (best_result, min_score)
+            best_key = key
+    return (best_result, min_score, best_key)
